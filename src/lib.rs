@@ -35,6 +35,21 @@ impl Canvas {
         }
         self.canvas[start_position.0][start_position.1 + len - 1] = last_char;
     }
+
+    pub fn draw_vertical_line(
+        &mut self,
+        init_char: char,
+        middle_char: char,
+        last_char: char,
+        start_position: (usize, usize),
+        len: usize,
+    ) {
+        self.canvas[start_position.0][start_position.1] = init_char;
+        for i in start_position.0 + 1..start_position.0 + len - 1 {
+            self.canvas[i][start_position.1] = middle_char;
+        }
+        self.canvas[start_position.0 + len - 1][start_position.1] = last_char;
+    }
 }
 
 #[cfg(test)]
@@ -76,6 +91,39 @@ mod tests {
         let expected_res = String::from("+---+\n");
 
         canvas.draw_horizontal_line('+', '-', '+', (0, 0), 5);
+        let result = canvas.to_string();
+
+        assert_eq!(result, expected_res);
+    }
+
+    #[test]
+    fn test_vertical_with_blank_chars() {
+        let mut canvas = crate::Canvas::new(10, 1);
+        let expected_res = String::from(" \n \n \n \n+\n|\n|\n|\n+\n \n");
+
+        canvas.draw_vertical_line('+', '|', '+', (4, 0), 5);
+        let result = canvas.to_string();
+
+        assert_eq!(result, expected_res);
+    }
+
+    #[test]
+    fn test_vertical_with_empty_column() {
+        let mut canvas = crate::Canvas::new(10, 2);
+        let expected_res = String::from("  \n  \n  \n  \n+ \n| \n| \n| \n+ \n  \n");
+
+        canvas.draw_vertical_line('+', '|', '+', (4, 0), 5);
+        let result = canvas.to_string();
+
+        assert_eq!(result, expected_res);
+    }
+
+    #[test]
+    fn test_vertical_line() {
+        let mut canvas = crate::Canvas::new(5, 1);
+        let expected_res = String::from("+\n|\n|\n|\n+\n");
+
+        canvas.draw_vertical_line('+', '|', '+', (0, 0), 5);
         let result = canvas.to_string();
 
         assert_eq!(result, expected_res);
