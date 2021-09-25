@@ -10,7 +10,7 @@ impl Canvas {
         }
     }
 
-    pub fn to_string(&self) -> String {
+    pub fn get_string(&self) -> String {
         let mut result = String::new();
         for line in self.canvas.iter() {
             let mut parsed_line = line.iter().collect::<String>();
@@ -68,7 +68,7 @@ mod tests {
     fn test_empty_canvas() {
         let canvas = crate::Canvas::new(1, 5);
         let expected_res = String::from("     \n");
-        let result = canvas.to_string();
+        let result = canvas.get_string();
 
         assert_eq!(result, expected_res);
     }
@@ -79,7 +79,7 @@ mod tests {
         let expected_res = String::from("    +---+ \n");
 
         canvas.draw_horizontal_line('+', '-', '+', (0, 4), 5);
-        let result = canvas.to_string();
+        let result = canvas.get_string();
 
         assert_eq!(result, expected_res);
     }
@@ -90,7 +90,7 @@ mod tests {
         let expected_res = String::from("+---+\n     \n");
 
         canvas.draw_horizontal_line('+', '-', '+', (0, 0), 5);
-        let result = canvas.to_string();
+        let result = canvas.get_string();
 
         assert_eq!(result, expected_res);
     }
@@ -101,7 +101,7 @@ mod tests {
         let expected_res = String::from("+---+\n");
 
         canvas.draw_horizontal_line('+', '-', '+', (0, 0), 5);
-        let result = canvas.to_string();
+        let result = canvas.get_string();
 
         assert_eq!(result, expected_res);
     }
@@ -112,7 +112,7 @@ mod tests {
         let expected_res = String::from(" \n \n \n \n+\n|\n|\n|\n+\n \n");
 
         canvas.draw_vertical_line('+', '|', '+', (4, 0), 5);
-        let result = canvas.to_string();
+        let result = canvas.get_string();
 
         assert_eq!(result, expected_res);
     }
@@ -123,7 +123,7 @@ mod tests {
         let expected_res = String::from("  \n  \n  \n  \n+ \n| \n| \n| \n+ \n  \n");
 
         canvas.draw_vertical_line('+', '|', '+', (4, 0), 5);
-        let result = canvas.to_string();
+        let result = canvas.get_string();
 
         assert_eq!(result, expected_res);
     }
@@ -134,7 +134,7 @@ mod tests {
         let expected_res = String::from("+\n|\n|\n|\n+\n");
 
         canvas.draw_vertical_line('+', '|', '+', (0, 0), 5);
-        let result = canvas.to_string();
+        let result = canvas.get_string();
 
         assert_eq!(result, expected_res);
     }
@@ -145,7 +145,7 @@ mod tests {
         let expected_res = String::from("+--+\n|  |\n|  |\n+--+\n");
 
         canvas.draw_square((0, 0), 4);
-        let result = canvas.to_string();
+        let result = canvas.get_string();
 
         assert_eq!(result, expected_res);
     }
@@ -156,7 +156,7 @@ mod tests {
         let expected_res = String::from("    \n+--+\n|  |\n|  |\n+--+\n    \n");
 
         canvas.draw_square((1, 0), 4);
-        let result = canvas.to_string();
+        let result = canvas.get_string();
 
         assert_eq!(result, expected_res);
     }
@@ -167,7 +167,7 @@ mod tests {
         let expected_res = String::from("      \n +--+ \n |  | \n |  | \n +--+ \n      \n");
 
         canvas.draw_square((1, 1), 4);
-        let result = canvas.to_string();
+        let result = canvas.get_string();
 
         assert_eq!(result, expected_res);
     }
