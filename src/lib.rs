@@ -18,7 +18,7 @@ impl Canvas {
             result.push_str(parsed_line.as_str());
         }
 
-        return result;
+        result
     }
 
     pub fn draw_horizontal_line(
