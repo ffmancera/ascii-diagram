@@ -66,7 +66,7 @@ impl Canvas {
 mod tests {
     #[test]
     fn test_empty_canvas() {
-        let mut canvas = crate::Canvas::new(1, 5);
+        let canvas = crate::Canvas::new(1, 5);
         let expected_res = String::from("     \n");
         let result = canvas.to_string();
 
