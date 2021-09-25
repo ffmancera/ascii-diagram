@@ -14,7 +14,7 @@ impl Canvas {
         let mut result = String::new();
         for line in self.canvas.iter() {
             let mut parsed_line = line.iter().collect::<String>();
-            parsed_line.push_str("\n");
+            parsed_line.push('\n');
             result.push_str(parsed_line.as_str());
         }
 
